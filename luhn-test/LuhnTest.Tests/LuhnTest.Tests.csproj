@@ -8,12 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-        <PackageReference Include="NSubstitute" Version="5.1.0" />
         <PackageReference Include="NUnit" Version="4.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InspirationOfTheDay\InspirationOfTheDay.csproj" />
+      <ProjectReference Include="..\LuhnTest\LuhnTest.csproj" />
     </ItemGroup>
 
 </Project>
