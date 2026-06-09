@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PureGreeter
+﻿namespace PureGreeter
 {
     public class PureGreeter
     {
@@ -8,19 +6,19 @@ namespace PureGreeter
         {
             if (currentHour < 0 || currentHour > 23)
             {
-                throw new ArgumentException("Hour must be between 0 and 23");
+                throw new HourOutOfRangeException();
             }
 
-            if (currentHour >= 6 && currentHour < 12)
-            {
-                return $"¡Buenos días {name}!";
-            }
-            
             if (currentHour < 6 || currentHour >= 20)
             {
                 return $"¡Buenas noches {name}!";
             }
 
+            if (currentHour < 12)
+            {
+                return $"¡Buenos días {name}!";
+            }
+            
             return $"¡Buenas tardes {name}!";
         }
     }
