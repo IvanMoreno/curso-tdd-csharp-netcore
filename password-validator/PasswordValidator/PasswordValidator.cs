@@ -10,7 +10,8 @@ namespace PasswordValidator
             return ContainsNumber(password) 
                    && IsLongEnough(password) 
                    && ContainsUnderscore(password) 
-                   && ContainsLowercase(password);
+                   && ContainsLowercase(password)
+                   && ContainsUppercase(password);
         }
 
         private static bool IsLongEnough(string password)
@@ -26,6 +27,11 @@ namespace PasswordValidator
         private static bool ContainsLowercase(string password)
         {
             return Regex.IsMatch(password, "[a-z]");
+        }
+        
+        private static bool ContainsUppercase(string password)
+        {
+            return Regex.IsMatch(password, "[A-Z]");
         }
 
         private static bool ContainsUnderscore(string password)
