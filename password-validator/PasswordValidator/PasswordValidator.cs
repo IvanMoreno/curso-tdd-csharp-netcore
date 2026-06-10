@@ -7,13 +7,22 @@ namespace PasswordValidator
     {
         public bool IsValid(string password)
         {
-            if (!password.Contains("_"))
-                return false;
+            return ContainsNumber(password) && IsLongEnough(password) && ContainsUnderscore(password);
+        }
 
-            if (!Regex.IsMatch(password, "[0-9]+$"))
-                return false;
-            
-            return password.Length > 8;    
+        private static bool IsLongEnough(string password)
+        {
+            return password.Length > 8;
+        }
+
+        private static bool ContainsNumber(string password)
+        {
+            return Regex.IsMatch(password, "[0-9]+$");
+        }
+
+        private static bool ContainsUnderscore(string password)
+        {
+            return password.Contains("_");
         }
     }
 }
