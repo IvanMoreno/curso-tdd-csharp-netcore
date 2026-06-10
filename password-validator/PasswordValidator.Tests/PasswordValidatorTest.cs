@@ -31,11 +31,11 @@ namespace PasswordValidator.Tests
             Assert.That(new PasswordValidator().IsValid("1Aa_5678"), Is.False);
         }
 
-        [Test]
-        public void MoreThan8Characters_IsValid()
+        [TestCase("1Aa_56789")]
+        [TestCase("1Aa_567890")]
+        public void MoreThan8Characters_IsValid(string password)
         {
-            Assert.That(new PasswordValidator().IsValid("1Aa_56789"), Is.True);
-            Assert.That(new PasswordValidator().IsValid("1Aa_567890"), Is.True);
+            Assert.That(new PasswordValidator().IsValid(password), Is.True);
         }
 
         [Test]
