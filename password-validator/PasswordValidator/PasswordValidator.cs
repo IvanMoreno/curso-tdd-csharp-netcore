@@ -5,17 +5,8 @@ using System.Text.RegularExpressions;
 
 namespace PasswordValidator
 {
-    public class PasswordValidator
+    public class PasswordValidatorFactory
     {
-        private readonly List<Rule> rules;
-
-        private PasswordValidator(List<Rule> rules)
-        {
-            this.rules = rules;
-        }
-
-        public bool IsValid(string password) => rules.All(policy => policy.SatisfiedBy(password));
-
         public static PasswordValidator WithAllRules()
         {
             return new PasswordValidator([
@@ -28,6 +19,15 @@ namespace PasswordValidator
         }
     }
 
+    public class PasswordValidator
+    {
+        private readonly List<Rule> rules;
+
+        public PasswordValidator(List<Rule> rules) => this.rules = rules;
+
+        public bool IsValid(string password) => rules.All(policy => policy.SatisfiedBy(password));
+    }
+
     public abstract class Rule
     {
         public abstract bool SatisfiedBy(string password);
@@ -37,7 +37,7 @@ namespace PasswordValidator
     {
         public override bool SatisfiedBy(string password)
         {
-            return password.Contains("_");
+            return password.Contains('_');
         }
     }
 
