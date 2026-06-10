@@ -33,6 +33,7 @@ namespace PasswordValidator.Tests
 
         [TestCase("1Aa_56789")]
         [TestCase("1Aa_567890")]
+        [TestCase("1Aa_56789a")]
         public void MoreThan8Characters_IsValid(string password)
         {
             Assert.That(new PasswordValidator().IsValid(password), Is.True);
