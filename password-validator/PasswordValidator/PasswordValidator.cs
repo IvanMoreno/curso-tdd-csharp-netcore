@@ -19,13 +19,9 @@ namespace PasswordValidator
         }
     }
 
-    public class PasswordValidator
+    public class PasswordValidator(List<Rule> rules)
     {
-        private readonly List<Rule> rules;
-
-        public PasswordValidator(List<Rule> rules) => this.rules = rules;
-
-        public bool IsValid(string password) => rules.All(policy => policy.SatisfiedBy(password));
+        public bool IsValid(string password) => rules.All(rule => rule.SatisfiedBy(password));
     }
 
     public abstract class Rule
