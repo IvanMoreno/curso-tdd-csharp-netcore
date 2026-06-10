@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace PasswordValidator
@@ -13,18 +14,7 @@ namespace PasswordValidator
             this.policies = policies;
         }
 
-        public bool IsValid(string password)
-        {
-            foreach (var policy in policies)
-            {
-                if (!policy.Satisfies(password))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        public bool IsValid(string password) => policies.All(policy => policy.SatisfiedBy(password));
 
         public static PasswordValidator Default()
         {
@@ -40,12 +30,12 @@ namespace PasswordValidator
 
     public abstract class Policy
     {
-        public abstract bool Satisfies(string password);
+        public abstract bool SatisfiedBy(string password);
     }
 
     public class ContainsUnderscore : Policy
     {
-        public override bool Satisfies(string password)
+        public override bool SatisfiedBy(string password)
         {
             return password.Contains("_");
         }
@@ -53,7 +43,7 @@ namespace PasswordValidator
 
     public class ContainsUppercase : Policy
     {
-        public override bool Satisfies(string password)
+        public override bool SatisfiedBy(string password)
         {
             return Regex.IsMatch(password, "[A-Z]");
         }
@@ -61,7 +51,7 @@ namespace PasswordValidator
 
     public class ContainsLowercase : Policy
     {
-        public override bool Satisfies(string password)
+        public override bool SatisfiedBy(string password)
         {
             return Regex.IsMatch(password, "[a-z]");
         }
@@ -69,7 +59,7 @@ namespace PasswordValidator
 
     public class IsLongEnough : Policy
     {
-        public override bool Satisfies(string password)
+        public override bool SatisfiedBy(string password)
         {
             return password.Length > 8;
         }
@@ -77,7 +67,7 @@ namespace PasswordValidator
 
     public class ContainsNumber : Policy
     {
-        public override bool Satisfies(string password)
+        public override bool SatisfiedBy(string password)
         {
             return Regex.IsMatch(password, "[0-9]");
         }
