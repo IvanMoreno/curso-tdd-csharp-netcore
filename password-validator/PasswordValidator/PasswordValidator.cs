@@ -6,6 +6,9 @@ namespace PasswordValidator
     {
         public bool IsValid(string password)
         {
+            if (!password.Contains("_"))
+                return false;
+            
             return password.Length > 8;    
         }
     }
