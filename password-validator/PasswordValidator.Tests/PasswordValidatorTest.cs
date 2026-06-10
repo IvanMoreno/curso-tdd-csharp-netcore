@@ -14,21 +14,21 @@ using NUnit.Framework;
     // Una barra baja como mínimo
 
 // Ejemplos
-// (1Aa_5678) = No válido
-// (1Aa_56789) = Válida
-// (1Aaa56789) = No válido
-// (1A__56789) = No válido
-// (1aa_56789) = No válido
-// (aAa_aaaaa) = No válido
+// [x] (1Aa_5678) = No válido
+// [] (1Aa_56789) = Válida
+// [] (1Aaa56789) = No válido
+// [] (1A__56789) = No válido
+// [] (1aa_56789) = No válido
+// [] (aAa_aaaaa) = No válido
 
 namespace PasswordValidator.Tests
 {
     public class PasswordValidatorTest
     {
         [Test]
-        public void Think_A_Good_Name_And_Change_It()
+        public void LessThan9Characters_IsNotValid()
         {
-            Assert.That(false, Is.True);
+            Assert.That(new PasswordValidator().IsValid("1Aa_5678"), Is.False);
         }
     }
 }
