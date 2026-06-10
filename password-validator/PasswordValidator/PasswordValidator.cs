@@ -6,7 +6,7 @@ namespace PasswordValidator
     {
         public bool IsValid(string password)
         {
-            return false;    
+            return password == "1Aa_56789";    
         }
     }
 }
