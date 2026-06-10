@@ -7,16 +7,16 @@ namespace PasswordValidator
 {
     public class PasswordValidator
     {
-        private readonly List<Policy> policies;
+        private readonly List<Rule> rules;
 
-        private PasswordValidator(List<Policy> policies)
+        private PasswordValidator(List<Rule> rules)
         {
-            this.policies = policies;
+            this.rules = rules;
         }
 
-        public bool IsValid(string password) => policies.All(policy => policy.SatisfiedBy(password));
+        public bool IsValid(string password) => rules.All(policy => policy.SatisfiedBy(password));
 
-        public static PasswordValidator Default()
+        public static PasswordValidator WithAllRules()
         {
             return new PasswordValidator([
                 new ContainsUnderscore(), 
@@ -28,12 +28,12 @@ namespace PasswordValidator
         }
     }
 
-    public abstract class Policy
+    public abstract class Rule
     {
         public abstract bool SatisfiedBy(string password);
     }
 
-    public class ContainsUnderscore : Policy
+    public class ContainsUnderscore : Rule
     {
         public override bool SatisfiedBy(string password)
         {
@@ -41,7 +41,7 @@ namespace PasswordValidator
         }
     }
 
-    public class ContainsUppercase : Policy
+    public class ContainsUppercase : Rule
     {
         public override bool SatisfiedBy(string password)
         {
@@ -49,7 +49,7 @@ namespace PasswordValidator
         }
     }
 
-    public class ContainsLowercase : Policy
+    public class ContainsLowercase : Rule
     {
         public override bool SatisfiedBy(string password)
         {
@@ -57,7 +57,7 @@ namespace PasswordValidator
         }
     }
 
-    public class IsLongEnough : Policy
+    public class IsLongEnough : Rule
     {
         public override bool SatisfiedBy(string password)
         {
@@ -65,7 +65,7 @@ namespace PasswordValidator
         }
     }
 
-    public class ContainsNumber : Policy
+    public class ContainsNumber : Rule
     {
         public override bool SatisfiedBy(string password)
         {

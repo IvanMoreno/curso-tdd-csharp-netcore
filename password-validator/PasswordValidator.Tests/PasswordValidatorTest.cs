@@ -28,7 +28,7 @@ namespace PasswordValidator.Tests
         [Test]
         public void LessThan9Characters_IsNotValid()
         {
-            Assert.That(PasswordValidator.Default().IsValid("1Aa_5678"), Is.False);
+            Assert.That(PasswordValidator.WithAllRules().IsValid("1Aa_5678"), Is.False);
         }
 
         [TestCase("1Aa_56789")]
@@ -36,31 +36,31 @@ namespace PasswordValidator.Tests
         [TestCase("1Aa_56789a")]
         public void MoreThan8Characters_IsValid(string password)
         {
-            Assert.That(PasswordValidator.Default().IsValid(password), Is.True);
+            Assert.That(PasswordValidator.WithAllRules().IsValid(password), Is.True);
         }
 
         [Test]
         public void WithoutUnderscore_IsNotValid()
         {
-            Assert.That(PasswordValidator.Default().IsValid("1Aaa56789"), Is.False);
+            Assert.That(PasswordValidator.WithAllRules().IsValid("1Aaa56789"), Is.False);
         }
         
         [Test]
         public void WithoutNumbers_IsNotValid()
         {
-            Assert.That(PasswordValidator.Default().IsValid("aAa_aaaaa"), Is.False);
+            Assert.That(PasswordValidator.WithAllRules().IsValid("aAa_aaaaa"), Is.False);
         }
 
         [Test]
         public void WithoutLowercase_IsNotValid()
         {
-            Assert.That(PasswordValidator.Default().IsValid("1A__56789"), Is.False);
+            Assert.That(PasswordValidator.WithAllRules().IsValid("1A__56789"), Is.False);
         }
 
         [Test]
         public void WithoutUppercase_IsNotValid()
         {
-            Assert.That(PasswordValidator.Default().IsValid("1aa_56789"), Is.False);
+            Assert.That(PasswordValidator.WithAllRules().IsValid("1aa_56789"), Is.False);
         }
     }
 }
