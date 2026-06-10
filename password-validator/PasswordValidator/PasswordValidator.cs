@@ -6,7 +6,7 @@ namespace PasswordValidator
     {
         public bool IsValid(string password)
         {
-            return password == "1Aa_56789";    
+            return password.Length > 8;    
         }
     }
 }

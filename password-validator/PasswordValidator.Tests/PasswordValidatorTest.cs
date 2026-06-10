@@ -15,7 +15,7 @@ using NUnit.Framework;
 
 // Ejemplos
 // [x] (1Aa_5678) = No válido
-// [] (1Aa_56789) = Válida
+// [x] (1Aa_56789) = Válida
 // [] (1Aaa56789) = No válido
 // [] (1A__56789) = No válido
 // [] (1aa_56789) = No válido
@@ -35,6 +35,7 @@ namespace PasswordValidator.Tests
         public void MoreThan8Characters_IsValid()
         {
             Assert.That(new PasswordValidator().IsValid("1Aa_56789"), Is.True);
+            Assert.That(new PasswordValidator().IsValid("1Aa_567890"), Is.True);
         }
     }
 }
