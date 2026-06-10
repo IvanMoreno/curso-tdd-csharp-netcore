@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace PasswordValidator
 {
-    public class PasswordValidatorFactory
+    public static class PasswordValidatorFactory
     {
         public static PasswordValidator WithAllRules()
         {
