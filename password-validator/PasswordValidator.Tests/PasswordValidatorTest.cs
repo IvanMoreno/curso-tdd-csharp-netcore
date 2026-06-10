@@ -19,7 +19,7 @@ using NUnit.Framework;
 // [x] (1Aaa56789) = No válido
 // [] (1A__56789) = No válido
 // [] (1aa_56789) = No válido
-// [] (aAa_aaaaa) = No válido
+// [x] (aAa_aaaaa) = No válido
 
 namespace PasswordValidator.Tests
 {
@@ -42,6 +42,12 @@ namespace PasswordValidator.Tests
         public void WithoutUnderscore_IsNotValid()
         {
             Assert.That(new PasswordValidator().IsValid("1Aaa56789"), Is.False);
+        }
+        
+        [Test]
+        public void WithoutNumbers_IsNotValid()
+        {
+            Assert.That(new PasswordValidator().IsValid("aAa_aaaaa"), Is.False);
         }
     }
 }
