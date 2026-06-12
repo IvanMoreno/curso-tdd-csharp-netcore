@@ -5,6 +5,7 @@ namespace ArgentRose;
 public class Product {
     readonly int sellIn;
     readonly Quality quality;
+    int Devaluation => sellIn < 1 ? 4 : 2;
 
     Product(int sellIn, Quality quality) {
         this.sellIn = sellIn;
@@ -13,8 +14,7 @@ public class Product {
 
     public Product Update() {
         var newSellIn = sellIn - 1;
-        var qualityDecrement = newSellIn < 0 ? 4 : 2;
-        return Create(newSellIn, quality.DecreaseBy(qualityDecrement));
+        return Create(newSellIn, quality.DecreaseBy(Devaluation));
     }
 
     public override bool Equals(object obj) {
