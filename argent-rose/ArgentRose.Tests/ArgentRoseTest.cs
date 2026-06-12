@@ -9,6 +9,7 @@ using NUnit.Framework;
 // [x] sellIn public?
 // [x] quality public?
 // [] Quality object?
+// [] - [(s:1, q:2), (s:0, q:4)] => [(s:0, q:0), (s:-1, q:0)]
     
 namespace ArgentRose.Tests
 {
