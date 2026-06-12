@@ -11,10 +11,8 @@ public class ArgentRoseStore {
     }
 
     public void Update() {
-        if (inventory.Count > 0) {
-            for (var i = 0; i < inventory.Count; i++) {
-                inventory[i] = inventory[i].Update();
-            }
+        for (var i = 0; i < inventory.Count; i++) {
+            inventory[i] = inventory[i].Update();
         }
     }
 
