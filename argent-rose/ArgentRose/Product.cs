@@ -13,8 +13,7 @@ public class Product {
     }
 
     public Product Update() {
-        var newSellIn = sellIn - 1;
-        return Create(newSellIn, quality.DecreaseBy(Devaluation));
+        return Create(sellIn - 1, quality.DecreaseBy(Devaluation));
     }
 
     public override bool Equals(object obj) {
