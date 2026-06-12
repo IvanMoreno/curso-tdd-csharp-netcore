@@ -2,6 +2,10 @@ s = sellin
 q = quality
 
 Regular Products
+s:(0, inf), q => s' = s - 1, q' = q - 2
+s:(-inf, 0], q => s' = s - 1, q' = q - 4
+q[0, 50]
+
 [(s:10, q:10)] => [(s:9, q:8)]
 [(s:10, q:50)] => [(s:9, q:48)]
 [(s:1, q:50)] => [(s:0, q:48)]
