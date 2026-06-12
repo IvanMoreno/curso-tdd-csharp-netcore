@@ -3,7 +3,7 @@ using System;
 namespace ArgentRose;
 
 public readonly struct Quality {
-    public readonly int level;
+    readonly int level;
 
     public Quality(int level) {
         if (level < 0 || level > 50)
@@ -11,4 +11,6 @@ public readonly struct Quality {
         
         this.level = level;
     }
+
+    public Quality DecreaseBy(int amount) => new(Math.Max(level - amount, 0));
 }

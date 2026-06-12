@@ -14,8 +14,7 @@ public class Product {
     public Product Update() {
         var newSellIn = sellIn - 1;
         var qualityDecrement = newSellIn < 0 ? 4 : 2;
-        int quality = Math.Max(this.quality.level - qualityDecrement, 0);
-        return Create(newSellIn, new Quality(quality));
+        return Create(newSellIn, quality.DecreaseBy(qualityDecrement));
     }
 
     public override bool Equals(object obj) {
