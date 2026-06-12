@@ -17,3 +17,17 @@ P3-a) s:(0, inf), q[0, 2) => s' = s - 1, q' = 0
 
 P3-b) s:(-inf, 0], q[0, 4) => s' = s - 1, q' = 0
 [(s:0, q:3)] => [(s:-1, q:0)]
+
+
+BVA
+P1/P2
+from P1 => on-point = [(s:1, q:2)] / off-point = [(s:0, q:4)]
+from P2 => on-point = [(s:0, q:4)] / off-point = [(s:1, q:2)]
+
+P1/P3
+from P1 => on-point = [(s:1, q:2)] / off-point = [(s:1, q:1)]
+from P3 => on-point = [(s:1, q:1)] / off-point = [(s:1, q:2)]
+
+P2/P3
+from P2 => on-point = [(s:0, q:4)] / off-point = [(s:0, q:3)]
+from P3 => on-point = [(s:0, q:3)] / off-point = [(s:0, q:4)]
