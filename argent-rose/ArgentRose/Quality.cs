@@ -3,7 +3,7 @@ using System;
 namespace ArgentRose;
 
 public readonly struct Quality {
-    readonly int level;
+    public readonly int level;
 
     public Quality(int level) {
         if (level < 0 || level > 50)

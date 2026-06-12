@@ -4,19 +4,18 @@ namespace ArgentRose;
 
 public class Product {
     readonly int sellIn;
-    readonly int quality;
-    readonly Quality qualityNew;
+    readonly Quality quality;
 
-    Product(int sellIn, int quality) {
+    Product(int sellIn, Quality quality) {
         this.sellIn = sellIn;
         this.quality = quality;
-        this.qualityNew = new Quality(quality);
     }
 
     public Product Update() {
         var newSellIn = sellIn - 1;
         var qualityDecrement = newSellIn < 0 ? 4 : 2;
-        return Create(newSellIn, Math.Max(quality - qualityDecrement, 0));
+        int quality = Math.Max(this.quality.level - qualityDecrement, 0);
+        return Create(newSellIn, new Quality(quality));
     }
 
     public override bool Equals(object obj) {
@@ -27,18 +26,18 @@ public class Product {
     }
 
     bool Equals(Product other) {
-        return sellIn == other.sellIn && qualityNew.Equals(other.qualityNew);
+        return sellIn == other.sellIn && quality.Equals(other.quality);
     }
 
     public override int GetHashCode() {
-        return HashCode.Combine(sellIn, qualityNew);
+        return HashCode.Combine(sellIn, quality);
     }
 
     public override string ToString() {
-        return $"{nameof(sellIn)}: {sellIn}, {nameof(qualityNew)}: {qualityNew}";
+        return $"{nameof(sellIn)}: {sellIn}, {nameof(quality)}: {quality}";
     }
 
-    public static Product Create(int sellIn, int quality) {
+    public static Product Create(int sellIn, Quality quality) {
         return new Product(sellIn, quality);
     }
 }
