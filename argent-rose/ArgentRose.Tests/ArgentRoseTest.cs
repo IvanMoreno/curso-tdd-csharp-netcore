@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using static ArgentRose.Product;
 
+// [] Product has a description
 // [] - [(s:7, q: 0)] => [(s:6, q: 1)]
 // [] - [(s:7, q: 49)] => [(s:6, q: 50)]
 // [] - [(s:6, q: 0)] => [(s:5, q: 3)]
