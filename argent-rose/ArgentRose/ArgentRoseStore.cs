@@ -4,16 +4,14 @@ using System.Linq;
 namespace ArgentRose;
 
 public class ArgentRoseStore {
-    readonly List<Product> inventory;
+    List<Product> inventory;
 
     public ArgentRoseStore(List<Product> inventory) {
         this.inventory = inventory;
     }
 
     public void Update() {
-        for (var i = 0; i < inventory.Count; i++) {
-            inventory[i] = inventory[i].Update();
-        }
+        inventory = inventory.Select(product => product.Update()).ToList();
     }
 
     public override bool Equals(object obj) {
