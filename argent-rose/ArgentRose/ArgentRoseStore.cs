@@ -12,7 +12,7 @@ public class ArgentRoseStore {
 
     public void Update() {
         if (inventory.Count > 0) {
-            inventory[0] = new Product(0, 0);
+            inventory[0] = new Product(inventory[0].sellIn - 1, 0);
         }
     }
 

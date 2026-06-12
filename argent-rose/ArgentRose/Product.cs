@@ -3,7 +3,7 @@ using System;
 namespace ArgentRose;
 
 public class Product {
-    readonly int sellIn;
+    public readonly int sellIn;
     readonly int quality;
 
     public Product(int sellIn, int quality) {
