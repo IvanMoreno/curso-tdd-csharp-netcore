@@ -9,7 +9,7 @@ using NUnit.Framework;
 // [x] sellIn public?
 // [x] quality public?
 // [] Quality object?
-// [] - [(s:1, q:2), (s:0, q:4)] => [(s:0, q:0), (s:-1, q:0)]
+// [x] - [(s:1, q:2), (s:0, q:4)] => [(s:0, q:0), (s:-1, q:0)]
     
 namespace ArgentRose.Tests
 {
@@ -59,6 +59,15 @@ namespace ArgentRose.Tests
             sut.Update();
 
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([new Product(sellIn: sellIn - 1, quality: 0)])));
+        }
+
+        [Test]
+        public void UpdateManyProducts() {
+            var sut = new ArgentRoseStore([new Product(sellIn: 1, quality: 2), new Product(sellIn: 0, quality: 4)]);
+            
+            sut.Update();
+
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([new Product(sellIn: 0, quality: 0), new Product(sellIn: -1, quality: 0)])));
         }
     }
 }
