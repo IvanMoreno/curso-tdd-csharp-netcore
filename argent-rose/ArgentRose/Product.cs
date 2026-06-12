@@ -33,7 +33,7 @@ public class Product {
         return $"{nameof(sellIn)}: {sellIn}, {nameof(quality)}: {quality}";
     }
 
-    public static Product Create(int sellIn, Quality quality) {
+    public static Product Stock(int sellIn, Quality quality) {
         return new Product(sellIn, quality);
     }
 }
