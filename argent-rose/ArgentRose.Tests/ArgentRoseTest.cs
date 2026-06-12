@@ -22,5 +22,14 @@ namespace ArgentRose.Tests
             
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([])));
         }
+
+        [Test]
+        public void SellIn_Decreases_ByOne() {
+            var sut = new ArgentRoseStore([new Product(sellIn: 1, quality: 0)]);
+            
+            sut.Update();
+            
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([new Product(sellIn: 0, quality: 0)])));
+        }
     }
 }
