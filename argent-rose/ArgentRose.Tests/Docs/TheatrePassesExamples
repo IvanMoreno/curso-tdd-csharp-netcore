@@ -1,17 +1,35 @@
 s = sellin
 q = quality
 
-P1) s:(6, inf), q: [0, 49) => s': s - 1, q': q + 1
-(s:10, q: 10) => (s:9, q: 11)
+P1) s:(6, inf), q: [0, 49] => s': s - 1, q': q + 1
+[(s:10, q: 10)] => [(s:9, q: 11)]
 
-P2) s:(1, 6], q: [0, 47) => s': s - 1, q': q + 3
-(s:6, q: 10) => (s:5, q: 13)
+P2) s:(0, 6], q: [0, 47] => s': s - 1, q': q + 3
+[(s:6, q: 10)] => [(s:5, q: 13)]
 
 P3) s:(-inf, 0], q: [0, 50] => s': s - 1, q': 0
-(s:0, q: 40) => (s:-1, q: 0)
+[(s:0, q: 40)] => [(s:-1, q: 0)]
 
-P4-a) s:(6, inf), q: [49, 50] => s': s - 1, q': 50
-(s:8, q: 50) => (s:7, q: 50)
+P4-a) s:(6, inf), q: (49, 50] => s': s - 1, q': 50
+[(s:8, q: 50)] => [(s:7, q: 50)]
 
-P4-b) s:(-inf, 0], q: [47, 50] => s': s - 1, q': 50
-(s:1, q: 48) => (s:0, q: 50)
+P4-b) s:(0, 6], q: (47, 50] => s': s - 1, q': 50
+[(s:1, q: 48)] => [(s:0, q: 50)]
+
+
+BVA
+P1/P2
+from P1 => on-point = [(s:7, q: 0)] / off-point = [(s:6, q: 0)]
+from P2 => on-point = [(s:6, q: 0)] / off-point = [(s:7, q: 0)]
+
+P2/P3
+from P2 => on-point = [(s:1, q: 0)] / off-point = [(s:0, q: 0)]
+from P3 => on-point = [(s:0, q: 0)] / off-point = [(s:1, q: 0)]
+
+P1/P4-a
+from P1 => on-point = [(s:7, q: 49)] / off-point = [(s:7, q: 50)]
+from P4-a => on-point = [(s:7, q: 50)] / off-point = [(s:7, q: 49)]
+
+P2/P4-b
+from P2 => on-point = [(s:6, q: 47)] / off-point = [(s:6, q: 48)]
+from P4-b => on-point = [(s:6, q: 48)] / off-point = [(s:6, q: 47)]
