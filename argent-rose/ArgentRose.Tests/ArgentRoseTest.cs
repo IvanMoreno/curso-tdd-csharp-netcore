@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 // [] => []
@@ -14,9 +16,43 @@ namespace ArgentRose.Tests
     public class ArgentRoseTest
     {
         [Test]
-        public void Think_A_Good_Name_And_Change_It()
-        {
-            Assert.That(false, Is.True);
+        public void EmptyInventory_RemainsEmpty() {
+            var sut = new ArgentRoseStore([]);
+
+            sut.Update();
+            
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([])));
         }
+    }
+
+    public class ArgentRoseStore {
+        readonly List<Product> inventory;
+
+        public ArgentRoseStore(List<Product> inventory) {
+            this.inventory = inventory;
+        }
+
+        public void Update() {
+            
+        }
+
+        public override bool Equals(object obj) {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((ArgentRoseStore)obj);
+        }
+
+        bool Equals(ArgentRoseStore other) {
+            return inventory.SequenceEqual(other.inventory);
+        }
+
+        public override int GetHashCode() {
+            return (inventory != null ? inventory.GetHashCode() : 0);
+        }
+    }
+
+    public class Product {
+        
     }
 }
