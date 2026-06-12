@@ -29,4 +29,8 @@ public class Product {
     public override int GetHashCode() {
         return HashCode.Combine(sellIn, quality);
     }
+
+    public override string ToString() {
+        return $"{nameof(sellIn)}: {sellIn}, {nameof(quality)}: {quality}";
+    }
 }

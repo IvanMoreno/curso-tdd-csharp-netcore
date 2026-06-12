@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,6 +28,10 @@ public class ArgentRoseStore {
     }
 
     public override int GetHashCode() {
-        return (inventory != null ? inventory.GetHashCode() : 0);
+        return inventory != null ? inventory.GetHashCode() : 0;
+    }
+
+    public override string ToString() {
+        return $"{nameof(inventory)}: {string.Join("\n", inventory)}";
     }
 }
