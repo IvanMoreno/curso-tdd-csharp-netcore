@@ -1,0 +1,26 @@
+Observable Behaviour
+
+- Update the inventory of the store
+
+- Input: Inventory (set of products)
+- Output: Inventory' (with products updated)
+
+Smaller Behaviours
+
+- Update inventory product
+    - The sellIn is updated first and then the quality is updated using the new value of the sellIn.
+
+- sellIn always decreases by one.
+
+- Regular products
+    - quality decreases by two.
+    - quality decreases by four when expired.
+
+- Special products (Products described as "Theatre Passes")
+    - Their quality changes as their sellIn day approaches:
+        - increases by one when there are more than five days to sell the product.
+        - increases by three when there are five days or less to sell the product.
+        - drops to zero after the play.
+        
+Invariants
+- Quality cannot ever be below 0 or above 50
