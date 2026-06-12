@@ -4,7 +4,7 @@ namespace ArgentRose;
 
 public class Product {
     public readonly int sellIn;
-    readonly int quality;
+    public readonly int quality;
 
     public Product(int sellIn, int quality) {
         this.sellIn = sellIn;
