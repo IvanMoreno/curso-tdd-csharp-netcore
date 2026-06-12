@@ -13,7 +13,7 @@ public class ArgentRoseStore {
 
     public void Update() {
         if (inventory.Count > 0) {
-            inventory[0] = new Product(inventory[0].sellIn - 1, Math.Max(inventory[0].quality - 2, 0));
+            inventory[0] = inventory[0].Update();
         }
     }
 
