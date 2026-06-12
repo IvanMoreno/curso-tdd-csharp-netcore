@@ -3,8 +3,8 @@ using System;
 namespace ArgentRose;
 
 public class Product {
-    public readonly int sellIn;
-    public readonly int quality;
+    readonly int sellIn;
+    readonly int quality;
 
     public Product(int sellIn, int quality) {
         this.sellIn = sellIn;
