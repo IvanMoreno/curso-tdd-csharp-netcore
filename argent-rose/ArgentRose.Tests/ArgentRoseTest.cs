@@ -25,52 +25,52 @@ namespace ArgentRose.Tests {
 
         [Test]
         public void SellIn_Decreases_ByOne() {
-            var sut = new ArgentRoseStore([Stock(sellIn: 1, quality: new Quality(0))]);
+            var sut = new ArgentRoseStore([Regular(sellIn: 1, quality: new Quality(0))]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Stock(sellIn: 0, quality: new Quality(0))])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Regular(sellIn: 0, quality: new Quality(0))])));
         }
 
         [Test]
         public void Quality_DecreasesByTwo_WhenUnexpired() {
-            var sut = new ArgentRoseStore([Stock(sellIn: 10, quality: new Quality(10))]);
+            var sut = new ArgentRoseStore([Regular(sellIn: 10, quality: new Quality(10))]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Stock(sellIn: 9, quality: new Quality(8))])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Regular(sellIn: 9, quality: new Quality(8))])));
         }
 
         [Test]
         public void Quality_DecreasesByFour_WhenExpired() {
-            var sut = new ArgentRoseStore([Stock(sellIn: 0, quality: new Quality(10))]);
+            var sut = new ArgentRoseStore([Regular(sellIn: 0, quality: new Quality(10))]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Stock(sellIn: -1, quality: new Quality(6))])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Regular(sellIn: -1, quality: new Quality(6))])));
         }
 
         [TestCase(3, 0)]
         [TestCase(0, 3)]
         public void Quality_CannotBeLower_ThanZero(int sellIn, int quality) {
-            var sut = new ArgentRoseStore([Stock(sellIn, new Quality(quality))]);
+            var sut = new ArgentRoseStore([Regular(sellIn, new Quality(quality))]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Stock(sellIn: sellIn - 1, quality: new Quality(0))])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([Regular(sellIn: sellIn - 1, quality: new Quality(0))])));
         }
 
         [Test]
         public void UpdateManyProducts() {
             var sut = new ArgentRoseStore([
-                Stock(sellIn: 1, quality: new Quality(2)), Stock(sellIn: 0, quality: new Quality(4))
+                Regular(sellIn: 1, quality: new Quality(2)), Regular(sellIn: 0, quality: new Quality(4))
             ]);
 
             sut.Update();
 
             Assert.That(sut,
                 Is.EqualTo(new ArgentRoseStore([
-                    Stock(sellIn: 0, quality: new Quality(0)), Stock(sellIn: -1, quality: new Quality(0))
+                    Regular(sellIn: 0, quality: new Quality(0)), Regular(sellIn: -1, quality: new Quality(0))
                 ])));
         }
     }
