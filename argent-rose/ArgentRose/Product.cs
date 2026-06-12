@@ -12,7 +12,9 @@ public class Product {
     }
 
     public Product Update() {
-        return new Product(sellIn - 1, Math.Max(quality - 2, 0));
+        var newSellIn = sellIn - 1;
+        var qualityDecrement = newSellIn < 0 ? 4 : 2;
+        return new Product(newSellIn, Math.Max(quality - qualityDecrement, 0));
     }
 
     public override bool Equals(object obj) {
