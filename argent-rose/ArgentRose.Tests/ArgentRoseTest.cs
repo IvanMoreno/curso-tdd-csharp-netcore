@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using static ArgentRose.Product;
+using static ArgentRose.ProductFactory;
 
 // [x] Product has a description
 // [x] - [(s:7, q: 0)] => [(s:6, q: 1)]
