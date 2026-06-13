@@ -4,21 +4,21 @@ namespace ArgentRose;
 
 public abstract class Product {
     readonly string description;
-    protected readonly int sellIn;
-    protected readonly Quality quality;
+    protected readonly int SellIn;
+    protected readonly Quality Quality;
 
     protected Product(int sellIn, Quality quality, string description) {
-        this.sellIn = sellIn;
-        this.quality = quality;
+        this.SellIn = sellIn;
+        this.Quality = quality;
         this.description = description;
     }
 
-    public Product Update() => Create(sellIn - 1, UpdateQuality(), description);
+    public Product Update() => Create(SellIn - 1, UpdateQuality(), description);
 
     protected abstract Quality UpdateQuality();
 
     bool Equals(Product other) {
-        return description == other.description && sellIn == other.sellIn && quality.Equals(other.quality);
+        return description == other.description && SellIn == other.SellIn && Quality.Equals(other.Quality);
     }
 
     public override bool Equals(object obj) {
@@ -29,11 +29,11 @@ public abstract class Product {
     }
 
     public override int GetHashCode() {
-        return HashCode.Combine(description, sellIn, quality);
+        return HashCode.Combine(description, SellIn, Quality);
     }
 
     public override string ToString() {
-        return $"{nameof(description)}: {description}, {nameof(sellIn)}: {sellIn}, {nameof(quality)}: {quality}";
+        return $"{nameof(description)}: {description}, {nameof(SellIn)}: {SellIn}, {nameof(Quality)}: {Quality}";
     }
 
     public static Product Regular(int sellIn, Quality quality) {
