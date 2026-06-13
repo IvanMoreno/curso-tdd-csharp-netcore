@@ -4,16 +4,24 @@ namespace ArgentRose;
 
 public class TheatrePass : Product {
     public TheatrePass(int sellIn, Quality quality) : base(sellIn, quality, "Theatre Pass") { }
+    
+    protected override Quality UpdateQuality() {
+        return sellIn <= 0 ? 0 : quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
+    }
 }
 
 public class Regular : Product {
     public Regular(int sellIn, Quality quality, string description) : base(sellIn, quality, description) { }
+    
+    protected override Quality UpdateQuality() {
+        return quality.DecreaseBy(sellIn <= 0 ? 4 : 2);
+    }
 }
 
 public class Product {
     readonly string description;
-    readonly int sellIn;
-    readonly Quality quality;
+    protected readonly int sellIn;
+    protected readonly Quality quality;
 
     protected Product(int sellIn, Quality quality, string description) {
         this.sellIn = sellIn;
@@ -23,7 +31,7 @@ public class Product {
 
     public Product Update() => Create(sellIn - 1, UpdateQuality(), description);
 
-    Quality UpdateQuality() {
+    protected virtual Quality UpdateQuality() {
         if (description == "Theatre Pass")
             return sellIn <= 0 ? 0 : quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
         
