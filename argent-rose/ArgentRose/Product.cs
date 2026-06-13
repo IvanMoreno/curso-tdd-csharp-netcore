@@ -13,8 +13,14 @@ public class Product {
         this.description = description;
     }
 
-    public Product Update() => new(sellIn - 1, quality.DecreaseBy(Devaluation()), description);
-    int Devaluation() => sellIn < 1 ? 4 : 2;
+    public Product Update() => new(sellIn - 1, UpdateQuality(), description);
+
+    Quality UpdateQuality() {
+        if (description == "Theatre Pass")
+            return quality.IncreaseBy(1);
+        
+        return quality.DecreaseBy(sellIn < 1 ? 4 : 2);
+    }
 
     bool Equals(Product other) {
         return description == other.description && sellIn == other.sellIn && quality.Equals(other.quality);
@@ -37,5 +43,9 @@ public class Product {
 
     public static Product Regular(int sellIn, Quality quality) {
         return new Product(sellIn, quality, "Regular");
+    }
+
+    public static Product TheatrePass(int sellIn, Quality quality) {
+        return new Product(sellIn, quality, "Theatre Pass");
     }
 }
