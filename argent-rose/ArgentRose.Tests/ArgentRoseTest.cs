@@ -10,6 +10,7 @@ using static ArgentRose.Product;
 // [] - [(s:0, q: 40)] => [(s:-1, q: 0)]
 // [] - [(s:7, q: 50)] => [(s:6, q: 50)]
 // [] - [(s:6, q: 48)] => [(s:5, q: 50)]
+// [] - Quality implicit conversion
 
 namespace ArgentRose.Tests {
     public class ArgentRoseTest {
