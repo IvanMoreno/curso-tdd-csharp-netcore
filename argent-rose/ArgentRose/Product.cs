@@ -18,7 +18,7 @@ public class Regular : Product {
     }
 }
 
-public class Product {
+public abstract class Product {
     readonly string description;
     protected readonly int sellIn;
     protected readonly Quality quality;
@@ -31,12 +31,7 @@ public class Product {
 
     public Product Update() => Create(sellIn - 1, UpdateQuality(), description);
 
-    protected virtual Quality UpdateQuality() {
-        if (description == "Theatre Pass")
-            return sellIn <= 0 ? 0 : quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
-        
-        return quality.DecreaseBy(sellIn <= 0 ? 4 : 2);
-    }
+    protected abstract Quality UpdateQuality();
 
     bool Equals(Product other) {
         return description == other.description && sellIn == other.sellIn && quality.Equals(other.quality);
