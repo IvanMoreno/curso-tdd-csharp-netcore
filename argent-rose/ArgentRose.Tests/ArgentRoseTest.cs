@@ -1,16 +1,6 @@
 using NUnit.Framework;
 using static ArgentRose.ProductFactory;
 
-// [x] Product has a description
-// [x] - [(s:7, q: 0)] => [(s:6, q: 1)]
-// [x] - [(s:6, q: 0)] => [(s:5, q: 3)]
-// [x] - [(s:1, q: 0)] => [(s:0, q: 3)]
-// [x] - [(s:0, q: 0)] => [(s:-1, q: 0)]
-// [x] - [(s:0, q: 40)] => [(s:-1, q: 0)]
-// [x] - [(s:7, q: 50)] => [(s:6, q: 50)]
-// [x] - [(s:6, q: 48)] => [(s:5, q: 50)]
-// [x] - Quality implicit conversion
-
 namespace ArgentRose.Tests {
     public class ArgentRoseTest {
         [Test]
