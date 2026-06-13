@@ -82,5 +82,14 @@ namespace ArgentRose.Tests {
 
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: 6, quality: new Quality(1))])));
         }
+        
+        [Test]
+        public void SpecialProductQuality_Increases_ByThree_WhenCloseToExpiration() {
+            var sut = new ArgentRoseStore([TheatrePass(sellIn: 6, quality: new Quality(0))]);
+
+            sut.Update();
+
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: 5, quality: new Quality(3))])));
+        }
     }
 }

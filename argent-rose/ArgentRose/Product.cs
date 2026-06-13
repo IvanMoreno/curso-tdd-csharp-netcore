@@ -17,7 +17,7 @@ public class Product {
 
     Quality UpdateQuality() {
         if (description == "Theatre Pass")
-            return quality.IncreaseBy(1);
+            return quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
         
         return quality.DecreaseBy(sellIn < 1 ? 4 : 2);
     }
