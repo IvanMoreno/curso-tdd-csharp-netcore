@@ -5,7 +5,7 @@ using static ArgentRose.ProductFactory;
 // [x] - [(s:7, q: 0)] => [(s:6, q: 1)]
 // [x] - [(s:6, q: 0)] => [(s:5, q: 3)]
 // [x] - [(s:1, q: 0)] => [(s:0, q: 3)]
-// [] - [(s:0, q: 0)] => [(s:-1, q: 0)]
+// [x] - [(s:0, q: 0)] => [(s:-1, q: 0)]
 // [x] - [(s:0, q: 40)] => [(s:-1, q: 0)]
 // [x] - [(s:7, q: 50)] => [(s:6, q: 50)]
 // [x] - [(s:6, q: 48)] => [(s:5, q: 50)]
@@ -98,13 +98,14 @@ namespace ArgentRose.Tests {
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn - 1, quality: 50)])));
         }
 
-        [Test]
-        public void TheatrePassQuality_DropsToZero_AfterExpirationDate() {
-            var sut = new ArgentRoseStore([TheatrePass(sellIn: 0, quality: 40)]);
+        [TestCase(0, 40)]
+        [TestCase(0, 0)]
+        public void TheatrePassQuality_DropsToZero_AfterExpirationDate(int sellIn, int quality) {
+            var sut = new ArgentRoseStore([TheatrePass(sellIn, quality)]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: -1, quality: 0)])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn - 1, quality: 0)])));
         }
     }
 }
