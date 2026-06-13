@@ -19,7 +19,7 @@ public class Product {
         if (description == "Theatre Pass")
             return quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
         
-        return quality.DecreaseBy(sellIn < 1 ? 4 : 2);
+        return quality.DecreaseBy(sellIn <= 0 ? 4 : 2);
     }
 
     bool Equals(Product other) {
