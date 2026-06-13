@@ -8,8 +8,8 @@ public abstract class Product {
     protected readonly Quality Quality;
 
     protected Product(int sellIn, Quality quality, string description) {
-        this.SellIn = sellIn;
-        this.Quality = quality;
+        SellIn = sellIn;
+        Quality = quality;
         this.description = description;
     }
 
