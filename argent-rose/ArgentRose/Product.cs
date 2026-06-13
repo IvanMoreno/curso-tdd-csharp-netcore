@@ -2,18 +2,26 @@ using System;
 
 namespace ArgentRose;
 
+public class TheatrePass : Product {
+    public TheatrePass(int sellIn, Quality quality, string description) : base(sellIn, quality, description) { }
+}
+
+public class Regular : Product {
+    public Regular(int sellIn, Quality quality, string description) : base(sellIn, quality, description) { }
+}
+
 public class Product {
     readonly string description;
     readonly int sellIn;
     readonly Quality quality;
 
-    Product(int sellIn, Quality quality, string description) {
+    protected Product(int sellIn, Quality quality, string description) {
         this.sellIn = sellIn;
         this.quality = quality;
         this.description = description;
     }
 
-    public Product Update() => new(sellIn - 1, UpdateQuality(), description);
+    public Product Update() => Create(sellIn - 1, UpdateQuality(), description);
 
     Quality UpdateQuality() {
         if (description == "Theatre Pass")
@@ -50,6 +58,9 @@ public class Product {
     }
 
     static Product Create(int sellIn, Quality quality, string description) {
-        return new Product(sellIn, quality, description);
+        if (description == "Theatre Pass")
+            return new TheatrePass(sellIn, quality, description);
+        
+        return new Regular(sellIn, quality, description);
     }
 }
