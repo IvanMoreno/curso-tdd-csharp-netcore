@@ -9,7 +9,7 @@ using static ArgentRose.Product;
 // [] - [(s:0, q: 0)] => [(s:-1, q: 0)]
 // [] - [(s:0, q: 40)] => [(s:-1, q: 0)]
 // [x] - [(s:7, q: 50)] => [(s:6, q: 50)]
-// [] - [(s:6, q: 48)] => [(s:5, q: 50)]
+// [x] - [(s:6, q: 48)] => [(s:5, q: 50)]
 // [] - Quality implicit conversion
 
 namespace ArgentRose.Tests {
@@ -92,13 +92,14 @@ namespace ArgentRose.Tests {
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: 5, quality: new Quality(3))])));
         }
 
-        [Test]
-        public void Quality_CannotBeGreater_ThanFifty() {
-            var sut = new ArgentRoseStore([TheatrePass(sellIn: 7, quality: new Quality(50))]);
+        [TestCase(7, 50)]
+        [TestCase(6, 48)]
+        public void Quality_CannotBeGreater_ThanFifty(int sellIn, int quality) {
+            var sut = new ArgentRoseStore([TheatrePass(sellIn: sellIn, quality: new Quality(quality))]);
 
             sut.Update();
 
-            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: 6, quality: new Quality(50))])));
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: sellIn - 1, quality: new Quality(50))])));
         }
     }
 }
