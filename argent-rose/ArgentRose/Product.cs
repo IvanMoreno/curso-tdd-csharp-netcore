@@ -2,22 +2,6 @@ using System;
 
 namespace ArgentRose;
 
-public class TheatrePass : Product {
-    public TheatrePass(int sellIn, Quality quality) : base(sellIn, quality, "Theatre Pass") { }
-    
-    protected override Quality UpdateQuality() {
-        return sellIn <= 0 ? 0 : quality.IncreaseBy(sellIn <= 6 ? 3 : 1);
-    }
-}
-
-public class Regular : Product {
-    public Regular(int sellIn, Quality quality, string description) : base(sellIn, quality, description) { }
-    
-    protected override Quality UpdateQuality() {
-        return quality.DecreaseBy(sellIn <= 0 ? 4 : 2);
-    }
-}
-
 public abstract class Product {
     readonly string description;
     protected readonly int sellIn;
