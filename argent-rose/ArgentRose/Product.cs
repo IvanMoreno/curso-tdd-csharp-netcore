@@ -42,10 +42,14 @@ public class Product {
     }
 
     public static Product Regular(int sellIn, Quality quality) {
-        return new Product(sellIn, quality, "Regular");
+        return Create(sellIn, quality, "Regular");
     }
 
     public static Product TheatrePass(int sellIn, Quality quality) {
-        return new Product(sellIn, quality, "Theatre Pass");
+        return Create(sellIn, quality, "Theatre Pass");
+    }
+
+    static Product Create(int sellIn, Quality quality, string description) {
+        return new Product(sellIn, quality, description);
     }
 }
