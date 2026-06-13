@@ -6,7 +6,7 @@ using static ArgentRose.Product;
 // [x] - [(s:6, q: 0)] => [(s:5, q: 3)]
 // [] - [(s:1, q: 0)] => [(s:0, q: 3)]
 // [] - [(s:0, q: 0)] => [(s:-1, q: 0)]
-// [] - [(s:0, q: 40)] => [(s:-1, q: 0)]
+// [x] - [(s:0, q: 40)] => [(s:-1, q: 0)]
 // [x] - [(s:7, q: 50)] => [(s:6, q: 50)]
 // [x] - [(s:6, q: 48)] => [(s:5, q: 50)]
 // [x] - Quality implicit conversion
@@ -95,6 +95,15 @@ namespace ArgentRose.Tests {
             sut.Update();
 
             Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: sellIn - 1, quality: 50)])));
+        }
+
+        [Test]
+        public void TheatrePassQuality_DropsToZero_AfterExpirationDate() {
+            var sut = new ArgentRoseStore([TheatrePass(sellIn: 0, quality: 40)]);
+
+            sut.Update();
+
+            Assert.That(sut, Is.EqualTo(new ArgentRoseStore([TheatrePass(sellIn: -1, quality: 0)])));
         }
     }
 }
