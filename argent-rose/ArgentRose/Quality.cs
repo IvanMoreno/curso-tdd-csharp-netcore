@@ -13,7 +13,7 @@ public readonly struct Quality {
     }
 
     public Quality DecreaseBy(int amount) => new(Math.Max(level - amount, 0));
-    public Quality IncreaseBy(int addend) => new(level + addend);
+    public Quality IncreaseBy(int addend) => new(Math.Min(level + addend, 50));
 
     public override string ToString() {
         return $"{nameof(level)}: {level}";
