@@ -3,7 +3,6 @@ using static ArgentRose.Product;
 
 // [x] Product has a description
 // [x] - [(s:7, q: 0)] => [(s:6, q: 1)]
-// [] - [(s:7, q: 49)] => [(s:6, q: 50)]
 // [x] - [(s:6, q: 0)] => [(s:5, q: 3)]
 // [] - [(s:1, q: 0)] => [(s:0, q: 3)]
 // [] - [(s:0, q: 0)] => [(s:-1, q: 0)]
