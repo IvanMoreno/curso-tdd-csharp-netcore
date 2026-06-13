@@ -3,7 +3,7 @@ using System;
 namespace ArgentRose;
 
 public class TheatrePass : Product {
-    public TheatrePass(int sellIn, Quality quality, string description) : base(sellIn, quality, description) { }
+    public TheatrePass(int sellIn, Quality quality) : base(sellIn, quality, "Theatre Pass") { }
 }
 
 public class Regular : Product {
@@ -59,7 +59,7 @@ public class Product {
 
     static Product Create(int sellIn, Quality quality, string description) {
         if (description == "Theatre Pass")
-            return new TheatrePass(sellIn, quality, description);
+            return new TheatrePass(sellIn, quality);
         
         return new Regular(sellIn, quality, description);
     }
