@@ -12,18 +12,18 @@ public readonly struct Quality {
         this.level = level;
     }
 
-    public Quality DecreaseBy(int amount) {
-        if (amount < 0)
+    public Quality DecreaseBy(int devaluation) {
+        if (devaluation < 0)
             throw new ArgumentException("Cannot decrease by a negative value, use IncreaseBy instead");
                 
-        return Math.Max(level - amount, Min);
+        return Math.Max(level - devaluation, Min);
     }
 
-    public Quality IncreaseBy(int addend) {
-        if (addend < 0)
+    public Quality IncreaseBy(int appreciation) {
+        if (appreciation < 0)
             throw new ArgumentException("Cannot increase by a negative value, use DecreaseBy instead");
         
-        return Math.Min(level + addend, Max);
+        return Math.Min(level + appreciation, Max);
     }
 
     public override string ToString() {
