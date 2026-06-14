@@ -16,7 +16,7 @@ public readonly struct Quality {
         if (devaluation < 0)
             throw new ArgumentException("Cannot decrease by a negative value, use IncreaseBy instead");
                 
-        return Math.Max(level - devaluation, Min);
+        return Math.Max(level - devaluation, Zero);
     }
 
     public Quality IncreaseBy(int appreciation) {
@@ -33,6 +33,6 @@ public readonly struct Quality {
     public static implicit operator Quality(int level) => new(level);
     public static implicit operator int(Quality quality) => quality.level;
 
-    public static Quality Min => 0;
+    public static Quality Zero => 0;
     public static Quality Max => 50;
 }
