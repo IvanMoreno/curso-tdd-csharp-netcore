@@ -6,14 +6,25 @@ public readonly struct Quality {
     readonly int level;
 
     Quality(int level) {
-        if (level < Min || level > Max)
+        if (level < 0 || level > 50)
             throw new ArgumentException("Quality must be between 0 and 50");
         
         this.level = level;
     }
 
-    public Quality DecreaseBy(int amount) => Math.Max(level - amount, Min);
-    public Quality IncreaseBy(int addend) => Math.Min(level + addend, Max);
+    public Quality DecreaseBy(int amount) {
+        if (amount < 0)
+            throw new ArgumentException("Cannot decrease by a negative value, use IncreaseBy instead");
+                
+        return Math.Max(level - amount, Min);
+    }
+
+    public Quality IncreaseBy(int addend) {
+        if (addend < 0)
+            throw new ArgumentException("Cannot increase by a negative value, use DecreaseBy instead");
+        
+        return Math.Min(level + addend, Max);
+    }
 
     public override string ToString() {
         return $"{nameof(level)}: {level}";
