@@ -20,4 +20,6 @@ public readonly struct Quality {
     }
     
     public static implicit operator Quality(int level) => new(level);
+
+    public static Quality Minimum => 0;
 }
