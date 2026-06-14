@@ -6,6 +6,7 @@ public abstract class Product {
     readonly string description;
     protected readonly int SellIn;
     protected readonly Quality Quality;
+    protected bool Expired => SellIn <= 0;
 
     protected Product(int sellIn, Quality quality, string description) {
         SellIn = sellIn;
