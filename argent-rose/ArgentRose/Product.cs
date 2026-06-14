@@ -14,7 +14,7 @@ public abstract class Product {
         this.description = description;
     }
 
-    public Product Update() => Create(SellIn - 1, UpdateQuality(), description);
+    public Product Update() => ProductFactory.Create(SellIn - 1, UpdateQuality(), description);
 
     protected abstract Quality UpdateQuality();
 
@@ -35,12 +35,5 @@ public abstract class Product {
 
     public override string ToString() {
         return $"{nameof(description)}: {description}, {nameof(SellIn)}: {SellIn}, {nameof(Quality)}: {Quality}";
-    }
-
-    public static Product Create(int sellIn, Quality quality, string description) {
-        if (description == "Theatre Pass")
-            return new TheatrePass(sellIn, quality);
-        
-        return new Regular(sellIn, quality, description);
     }
 }
